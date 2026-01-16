@@ -16,3 +16,6 @@ poetry add --group dev pytest pytest-asyncio pytest-cov black ruff mypy hypothes
 
 -- fast api
 poetry add fastapi uvicorn
+
+-- 
+poetry run uvicorn pe_orgair.api.main:app --reload
