@@ -11,8 +11,8 @@ import structlog
 from pe_orgair.config.settings import settings
 from pe_orgair.api.routes.v1 import router as v1_router
 from pe_orgair.api.routes.v2 import router as v2_router
-from pe_orgair.api.routes import health
-from pe_orgair.observability.setup import setup_tracing, setup_logging
+# from pe_orgair.api.routes import health
+# from pe_orgair.observability.setup import setup_tracing, setup_logging
 
 logger = structlog.get_logger()
 
@@ -36,7 +36,7 @@ async def lifespan(app: FastAPI):
 
 def create_app() -> FastAPI:
     """Application factory."""
-    setup_logging()
+    # setup_logging()
     
     app = FastAPI(
         title=settings.APP_NAME,
@@ -77,7 +77,53 @@ def create_app() -> FastAPI:
         )
         
         return response
+    # get api end point newly added this 
+    @app.get("/", tags=["Health"])
+    async def root():
+        return {"message": f"{settings.APP_NAME} is running", "version": settings.APP_VERSION}
     
+    # Example endpoint with request validation with post (newly added with greet)
+    from pydantic import BaseModel
+    class User(BaseModel):
+        age: int
+        name: str
+
+    @app.post("/greet")
+    def greet_user(user: User):
+        if user.age > 18:
+            return {"message": f"Hello, {user.name}! You are an adult."}
+        else:
+            return {"message": f"Hello, {user.name}! You are a minor."}
+        
+    # newly adding it from the lab file
+
+    from pe_orgair.models.items import Item
+    items_db = []
+    @app.get("/items", response_model=list[Item])
+    def get_items():
+        """GET: Retrieve all items."""
+        return items_db
+    
+    @app.post("/items", response_model=Item)
+    def create_item(item: Item):
+        """POST: Create a new item."""
+        items_db.append(item)
+        return item
+    
+    @app.put("/items/{id}", response_model=Item)
+    def update_item(id: int, updated_item: Item):  
+        for i, item in enumerate(items_db):
+            if item.id == id:
+                items_db[i] = updated_item
+                return updated_item
+        return {"error": "Item not found"}
+    
+    @app.delete("/items/{id}")
+    def delete_item(id: int): 
+        global items_db
+        items_db = [item for item in items_db if item.id != id]
+        return {"message": f"Item deleted with id {id}"}
+
     # Global error handler
     @app.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
@@ -93,10 +139,10 @@ def create_app() -> FastAPI:
         )
     
     # Tracing
-    setup_tracing(app)
+    # setup_tracing(app)
     
     # Routes
-    app.include_router(health.router, tags=["Health"])
+    # app.include_router(health.router, tags=["Health"])
     app.include_router(v1_router, prefix=settings.API_V1_PREFIX)
     app.include_router(v2_router, prefix=settings.API_V2_PREFIX)
     
