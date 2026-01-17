@@ -17,3 +17,24 @@
 - poetry add fastapi uvicorn
  
 - poetry run uvicorn pe_orgair.api.main:app --reload
+
+### env activate
+poetry env activate
+
+& "C:\Users\bhavy\OneDrive\Desktop\GITHUB\BHAVYA\Big-Data-Labs\Lab 1\pe-orgair-platform\.venv\Scripts\activate.ps1"
+
+##
+- uvicorn pe_orgair.api.main:app --reload
+- fast api end points
+http://127.0.0.1:8000/docs
+
+
+- add api end point for post greet
+- and enter the age and string and get the ouptut
+ - write other api end points as well
+- add items.py in models
+- and add end points in main.py like get,post, put, delete
+
+- poetry add streamlit
+- add scripts/app.py and add the code for streamlit
+- streamlit run .\scripts\app.py
