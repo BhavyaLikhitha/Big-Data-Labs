@@ -11,8 +11,10 @@ df = pd.DataFrame({
 })
 st.dataframe(df)
 
-# st.text(input("Enter some text:", key="name"))
+import streamlit as st
 
+st.text_input("Enter some text:", key="name")
+st.write(f"Hello, {st.session_state['name']}!")
 
 # st.session_state['name'] = st.text_input("Enter your name:")
 
