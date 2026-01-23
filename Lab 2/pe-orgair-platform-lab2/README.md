@@ -106,4 +106,6 @@ docker logs pe_orgair_postgres
 - run this command "alembic revision -m "create sample table" which would create a py file 
 - in the generated py file add upgrade (create table) and downgrade function for (dropping table)
 - alembic upgrade base
-- 
+- after  that "alembic revision -m "create base tables""
+- copy paste the table creation code from stramlit
+- run alembic uprade head
