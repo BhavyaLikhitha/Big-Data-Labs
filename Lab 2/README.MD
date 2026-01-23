@@ -35,4 +35,6 @@ and observe
 - and then start docker desktop and run "docker-compose up -d"
 - then write "poetry add alembic"
 - activate "venv" by - "& "C:\Users\bhavy\OneDrive\Desktop\GITHUB\BHAVYA\Big-Data-Labs\Lab 2\pe-orgair-platform\.venv\Scripts\activate.ps1" or " .\.venv\Scripts\activate"
-- alembic init migrations
+- alembic init migrations (created a migrations folder) which created a version folder as well (for schema changes tracking)
+- in the alembic.ini file, there would be sqlalchemy.url where we need to add the "postgresql://pe_admin:pe_local_dev_123@localhost/pe_orgair_db"
+- run this command "alembic revision -m "create sample table" which would create a py file 
