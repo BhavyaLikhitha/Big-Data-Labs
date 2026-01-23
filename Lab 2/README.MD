@@ -27,3 +27,12 @@ this lab is more about
 -alembic revision -m "dataseeding"
 - create a endpoint to hit a paarituclar table
 and observe 
+
+
+### how am i doing this lab:
+- first copy paste the previous lab such that all installations are in place, building on top of lab 1
+- add docker compose yml file
+- and then start docker desktop and run "docker-compose up -d"
+- then write "poetry add alembic"
+- activate "venv" by - "& "C:\Users\bhavy\OneDrive\Desktop\GITHUB\BHAVYA\Big-Data-Labs\Lab 2\pe-orgair-platform\.venv\Scripts\activate.ps1" or " .\.venv\Scripts\activate"
+- alembic init migrations
