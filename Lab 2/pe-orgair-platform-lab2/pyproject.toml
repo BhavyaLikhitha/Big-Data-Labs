@@ -1,0 +1,20 @@
+[project]
+name = "pe-orgair-platform-lab2"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Bhavyalikhitha",email = "bhavyalikhitha.bbl@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic (>=1.18.1,<2.0.0)",
+    "psycopg2 (>=2.9.11,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "pe_orgair_platform_lab2", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
