@@ -21,11 +21,11 @@
 - Added **Redis** for caching  
   *(observed faster response times on cached API requests)*
 
----
-
-## Visual: How Lab 2 Works
+### Visual: How Lab 2 Works
 
 Request → FastAPI → Check Redis Cache
                          ↓
               Cache Hit? → Return fast!
               Cache Miss? → Query PostgreSQL → Store in Redis → Return
+
+--- 
