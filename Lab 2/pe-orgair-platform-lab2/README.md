@@ -109,3 +109,23 @@ docker logs pe_orgair_postgres
 - after  that "alembic revision -m "create base tables""
 - copy paste the table creation code from stramlit
 - run alembic uprade head
+
+- fast api 
+- copy the pe-orgair from lab 1 to lab 2
+- add env as well from lab 1
+# Install Week 1 dependencies
+- poetry add fastapi "uvicorn[standard]" pydantic pydantic-settings httpx
+- poetry add snowflake-connector-python sqlalchemy alembic boto3 redis
+- poetry add structlog sse-starlette websockets
+
+### fast api
+- poetry add fastapi uvicorn
+ 
+- poetry run uvicorn pe_orgair.api.main:app --reload
+- uvicorn pe_orgair.api.main:app --reload
+
+- add end points for /entries in main.py
+- docker exec -ti pe_orgair_redis redis-cli then run command `set name "test"`and then run `get name` and then run `set big "data"` and then `get big  `
+
+- and then run the api endpoints on `http://127.0.0.1:8000/docs`
+- observe the cache time (processing time)
